@@ -34,6 +34,8 @@ export default async function LocaleLayout({
 					href="https://fonts.gstatic.com"
 					crossOrigin="anonymous"
 				/>
+				<title>Tractian</title>
+				<link rel="icon" href="https://tractian.com/icon.svg?b06b8c1ac747b123" />
 				<link
 					href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
 					rel="stylesheet"
