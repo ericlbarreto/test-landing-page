@@ -2,8 +2,29 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
+
+/** Chevron arrow SVG used in each FAQ item */
+function ChevronArrow({ isOpen }: { isOpen: boolean }) {
+  return (
+    <figure>
+      <svg
+        className={`transition-all ease-in-out ${isOpen ? "-rotate-90" : "rotate-90"}`}
+        fill="none"
+        height="14"
+        viewBox="0 0 9 14"
+        width="9"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 1.35364L7 7.35364L1 13.3536"
+          stroke={isOpen ? "#2563eb" : "#94A3B8"}
+          strokeMiterlimit="10"
+          strokeWidth="1.5"
+        />
+      </svg>
+    </figure>
+  );
+}
 
 /** Single FAQ accordion item */
 function FaqItem({
@@ -18,46 +39,35 @@ function FaqItem({
   onToggle: () => void;
 }) {
   return (
-    <div className="border border-slate-200 rounded-lg overflow-hidden">
-      <button
-        onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left hover:bg-slate-50 transition-colors"
-        aria-expanded={isOpen}
+    <button
+      className="group w-full border border-slate-300 rounded-sm bg-transparent p-4 transition hover:border-blue-600"
+      onClick={onToggle}
+      aria-expanded={isOpen}
+    >
+      <div
+        className={`${isOpen ? "mb-2" : "mb-0"} flex w-full items-center justify-between gap-3 transition-all`}
       >
-        <span
-          className={`text-sm md:text-base font-medium ${
-            isOpen ? "text-primary" : "text-slate-700"
+        <h3
+          className={`text-left font-medium text-body-md lg:font-semibold transition-all group-hover:brightness-110 ${
+            isOpen
+              ? "text-blue-600"
+              : "text-slate-700 group-hover:text-blue-600"
           }`}
         >
           {question}
-        </span>
-        <svg
-          className={`h-5 w-5 flex-shrink-0 text-slate-400 transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
-
-      <div
-        className={`overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <p className="px-5 pb-4 text-sm text-slate-500 leading-relaxed">
-          {answer}
-        </p>
+        </h3>
+        <ChevronArrow isOpen={isOpen} />
       </div>
-    </div>
+      <p
+        className="overflow-hidden text-left text-slate-500 ease-in-out text-body-md"
+        style={{
+          maxHeight: isOpen ? "400px" : "0px",
+          transition: "0.2s",
+        }}
+      >
+        {answer}
+      </p>
+    </button>
   );
 }
 
@@ -73,16 +83,18 @@ export function Faq() {
   }));
 
   return (
-    <Section>
-      <Container className="max-w-3xl">
-        <p className="text-center text-sm font-semibold tracking-[0.15em] text-primary uppercase mb-3">
-          {t("eyebrow")}
-        </p>
-        <h2 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-10 md:mb-14">
-          {t("title")}
-        </h2>
+    <div className="relative w-full bg-slate-100 py-12 lg:py-16">
+      <section className="mx-auto flex max-w-2xl flex-col items-center gap-8 px-4 lg:max-w-6xl lg:gap-16">
+        <article className="flex w-full flex-col items-center gap-2 lg:gap-4">
+          <p className="text-center uppercase text-blue-600 text-body-md">
+            {t("eyebrow")}
+          </p>
+          <h2 className="text-center font-semibold text-title-md lg:font-bold lg:text-title-lg">
+            {t("title")}
+          </h2>
+        </article>
 
-        <div className="space-y-3">
+        <div className="flex flex-col gap-y-6">
           {items.map((item, index) => (
             <FaqItem
               key={index}
@@ -95,7 +107,7 @@ export function Faq() {
             />
           ))}
         </div>
-      </Container>
-    </Section>
+      </section>
+    </div>
   );
 }

@@ -1,8 +1,6 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
 
 /** "From first call to full rollout" steps section */
 export function HowItWorks() {
@@ -14,30 +12,26 @@ export function HowItWorks() {
   }));
 
   return (
-    <Section variant="gray">
-      <Container>
-        <h2 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-12 md:mb-16">
+    <section className="bg-slate-100 px-4 py-12 lg:py-16">
+      <div className="mx-auto flex w-full max-w-2xl flex-col items-start gap-8 lg:max-w-6xl lg:items-center lg:gap-12">
+        <h2 className="text-left font-bold text-title-md lg:mb-4 lg:text-center">
           {t("title")}
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
+        <div className="flex w-full flex-col gap-8 lg:flex-row lg:justify-between lg:gap-12 xl:gap-16">
           {steps.map((step, index) => (
-            <div key={index} className="relative">
-              {/* Step number badge */}
-              <div className="mb-4 flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white text-sm font-bold">
+            <div key={index} className="flex h-full w-full flex-col gap-4">
+              <span className="flex h-7 w-7 items-center justify-center rounded-sm bg-blue-600 text-white text-body-xl lg:h-8 lg:w-8">
                 {index + 1}
-              </div>
-
-              <h3 className="mb-3 text-lg font-bold text-slate-900">
-                {step.title}
-              </h3>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                {step.description}
-              </p>
+              </span>
+              <article className="flex w-full flex-col gap-1 lg:gap-4">
+                <h3 className="font-bold text-title-xs">{step.title}</h3>
+                <p className="text-slate-500 text-body-md">{step.description}</p>
+              </article>
             </div>
           ))}
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

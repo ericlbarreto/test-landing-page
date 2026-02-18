@@ -56,6 +56,11 @@
   line-height: 1.625rem;
 }
 
+@utility text-body-xl {
+  font-size: 1.1875rem;
+  line-height: 1.75rem;
+}
+
 @utility text-title-xs {
   font-size: 1.25rem;
   line-height: 1.75rem;
