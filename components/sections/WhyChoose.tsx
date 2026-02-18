@@ -14,9 +14,9 @@ function CheckmarkIcon() {
 
 const tabImages = [
 	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/prove-the-roi.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
-	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/get-ahead-of-downtime.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
-	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/run-a-leaner-team.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
-	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/keep-audits-simple.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
+	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/get-ahead.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
+	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/run-a-leaner.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
+	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/keeps-audit-simple.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
 ];
 
 export function WhyChoose() {
