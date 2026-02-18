@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-/** SVG icon: Built for the whole plant (infinity/link icon) */
 function IconWholeHlant() {
 	return (
 		<svg
@@ -21,7 +20,6 @@ function IconWholeHlant() {
 	);
 }
 
-/** SVG icon: Execution-ready from day one (clipboard/gear icon) */
 function IconExecutionReady() {
 	return (
 		<svg
@@ -53,7 +51,6 @@ function IconExecutionReady() {
 	);
 }
 
-/** SVG icon: White-glove support (document/checklist icon) */
 function IconWhiteGlove() {
 	return (
 		<svg
@@ -72,10 +69,8 @@ function IconWhiteGlove() {
 	);
 }
 
-/** Array of icon components in order */
 const ICONS = [IconWholeHlant, IconExecutionReady, IconWhiteGlove];
 
-/** Value proposition cards — "You run the plant. We've got your back." */
 export function ValueProps() {
 	const t = useTranslations("valueProps");
 

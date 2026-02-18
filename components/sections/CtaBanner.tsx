@@ -6,7 +6,6 @@ interface CtaBannerProps {
   onGetDemo: () => void;
 }
 
-/** Full-width CTA banner with industrial background */
 export function CtaBanner({ onGetDemo }: CtaBannerProps) {
 	const t = useTranslations("ctaBanner");
 

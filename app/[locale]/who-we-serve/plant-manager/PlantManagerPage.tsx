@@ -14,10 +14,6 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { Faq } from "@/components/sections/Faq";
 import { DemoForm } from "@/components/sections/DemoForm";
 
-/**
- * Client-side page component that manages the demo modal state
- * and renders all sections in the correct order.
- */
 export function PlantManagerPage() {
 	const [isDemoOpen, setIsDemoOpen] = useState(false);
 
@@ -42,7 +38,6 @@ export function PlantManagerPage() {
 
 			<Footer />
 
-			{/* Demo request modal */}
 			<DemoForm isOpen={isDemoOpen} onClose={closeDemo} />
 		</>
 	);

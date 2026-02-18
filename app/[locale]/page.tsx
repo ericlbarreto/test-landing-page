@@ -1,8 +1,5 @@
 import { redirect } from "next/navigation";
 
-/**
- * Root locale page redirects to the plant-manager page.
- */
 export default async function LocaleRoot({
 	params,
 }: {

@@ -13,12 +13,10 @@ interface DemoFormProps {
   onClose: () => void;
 }
 
-/** Demo request form inside a modal */
 export function DemoForm({ isOpen, onClose }: DemoFormProps) {
 	const t = useTranslations("demoForm");
 	const [status, setStatus] = useState<FormStatus>("idle");
 
-	// Zod schema with translated messages
 	const schema = z.object({
 		firstName: z.string().min(1, t("validation.firstNameRequired")),
 		lastName: z.string().min(1, t("validation.lastNameRequired")),
@@ -40,12 +38,10 @@ export function DemoForm({ isOpen, onClose }: DemoFormProps) {
 		resolver: zodResolver(schema),
 	});
 
-	/** Simulated form submission */
 	async function onSubmit(data: DemoFormData) {
 		setStatus("loading");
 
 		try {
-			// Simulate API call
 			await new Promise<void>((resolve, reject) => {
 				setTimeout(() => {
 					// 90% success rate for demo purposes
@@ -207,7 +203,7 @@ export function DemoForm({ isOpen, onClose }: DemoFormProps) {
 						<button
 							type="submit"
 							disabled={status === "loading"}
-							className="w-full rounded-lg bg-primary py-3 text-sm font-semibold text-white hover:bg-primary-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+							className="w-full rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white hover:bg-blue-900 active:bg-blue-950 transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
 						>
 							{status === "loading" && (
 								<svg
@@ -239,7 +235,6 @@ export function DemoForm({ isOpen, onClose }: DemoFormProps) {
 	);
 }
 
-/** Reusable form field with label and error */
 import { forwardRef, type InputHTMLAttributes } from "react";
 
 interface FormFieldProps extends InputHTMLAttributes<HTMLInputElement> {

@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-/** Logo data with name, image URL, and max-width */
 const LOGOS = [
 	{
 		name: "Georgia Aquarium",
@@ -90,7 +89,6 @@ const LOGOS = [
 	},
 ];
 
-/** Single logo image element */
 function LogoItem({
 	logo,
 	scaleMobile = true,
@@ -119,7 +117,6 @@ function LogoItem({
 	);
 }
 
-/** Trusted-by logos — carousel on mobile, grid on desktop */
 export function TrustedBy() {
 	const t = useTranslations("trustedBy");
 

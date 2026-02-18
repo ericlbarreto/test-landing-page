@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-/** Checkmark SVG for accordion checkbox */
 function CheckmarkIcon() {
 	return (
 		<svg fill="none" height="14" viewBox="0 0 25 25" width="18" xmlns="http://www.w3.org/2000/svg">
@@ -13,7 +12,6 @@ function CheckmarkIcon() {
 	);
 }
 
-/** Image URLs for each accordion tab */
 const tabImages = [
 	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/prove-the-roi.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
 	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/get-ahead-of-downtime.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
@@ -21,7 +19,6 @@ const tabImages = [
 	"https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/keep-audits-simple.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
 ];
 
-/** "Why Plant Managers Choose Tractian" — accordion with image */
 export function WhyChoose() {
 	const t = useTranslations("whyChoose");
 	const [activeIndex, setActiveIndex] = useState(0);

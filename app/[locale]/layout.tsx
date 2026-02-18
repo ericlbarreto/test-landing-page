@@ -22,12 +22,12 @@ export default async function LocaleLayout({
 	}
 
 	setRequestLocale(locale);
+
 	const messages = await getMessages();
 
 	return (
 		<html lang={locale}>
 			<head>
-				{/* Inter font from Google Fonts */}
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
 					rel="preconnect"

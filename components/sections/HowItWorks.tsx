@@ -2,7 +2,6 @@
 
 import { useTranslations } from "next-intl";
 
-/** "From first call to full rollout" steps section */
 export function HowItWorks() {
 	const t = useTranslations("howItWorks");
 

@@ -44,31 +44,31 @@ export function Features() {
 									key={index}
 									className={`ease relative col-span-1 flex w-full items-center justify-center border-b px-1 pb-[3px] pt-1 transition-all duration-300 sm:px-0 sm:py-0 ${
 										activeTab === index
-					  ? "rounded-md border-transparent bg-[#F4F4F9] sm:rounded-none sm:border-b-blue-600 sm:bg-transparent"
-					  : "border-transparent bg-[#F4F4F9] transition-all duration-100 sm:border-b-slate-300 sm:bg-transparent sm:bg-white sm:duration-300 lg:hover:bg-transparent"
-				  }`}
+											? "rounded-md border-transparent bg-[#F4F4F9] sm:rounded-none sm:border-b-blue-600 sm:bg-transparent"
+											: "border-transparent bg-[#F4F4F9] transition-all duration-100 sm:border-b-slate-300 sm:bg-white sm:duration-300 lg:hover:bg-transparent"
+									}`}
 								>
 									<button
 										className={`w-full rounded-sm px-6 py-1.5 transition-all duration-100 text-body-md sm:w-auto sm:items-start sm:p-4 sm:duration-300 sm:text-[11px] md:text-body-sm lg:rounded-none lg:px-2 lg:text-body-md xl:px-4 2xl:px-6 ${
-					  activeTab === index
+											activeTab === index
 												? "bg-white font-semibold text-slate-700 shadow-sm sm:bg-transparent sm:font-bold sm:shadow-none"
-												: "text-slate-500 hover:text-slate-600"
+												: "bg-white font-semibold text-slate-500 shadow-sm sm:bg-transparent sm:font-bold sm:shadow-none hover:text-slate-600"
 										}`}
 										aria-label="Select Tab"
 										onClick={() => setActiveTab(index)}
-				  >
+									>
 										{tab.label}
 									</button>
 								</div>
-			  ))}
+							))}
 
 							<hr
 								className="absolute bottom-0 hidden transition-all duration-500 xl:block xl:border xl:border-blue-600"
 								style={{
-				  width: `${100 / tabs.length}%`,
-				  left: `${(activeTab * 100) / tabs.length}%`,
+									width: `${100 / tabs.length}%`,
+									left: `${(activeTab * 100) / tabs.length}%`,
 								}}
-			  />
+							/>
 						</div>
 
 						<article className="flex w-full justify-between gap-8 lg:gap-12">
@@ -84,7 +84,7 @@ export function Features() {
 												<li key={i} className="text-slate-500 text-body-md">
 													{bullet}
 												</li>
-					  ))}
+											))}
 										</ul>
 									</article>
 								</div>

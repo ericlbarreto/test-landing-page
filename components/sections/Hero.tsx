@@ -6,7 +6,6 @@ interface HeroProps {
   onGetDemo: () => void;
 }
 
-/** Arrow icon for CTA button */
 function ArrowRight() {
 	return (
 		<svg fill="none" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
@@ -18,13 +17,12 @@ function ArrowRight() {
 	);
 }
 
-/** Hero section — matches Tractian's exact layout and images */
 export function Hero({ onGetDemo }: HeroProps) {
 	const t = useTranslations("hero");
 
 	return (
 		<section
-			className="relative w-full md:bg-cover md:bg-right md:bg-no-repeat 2xl:bg-right-top 3xl:min-h-[675px] 4xl:min-h-[695px] md:bg-[url('https://tractian-webpage.s3.us-east-1.amazonaws.com/website/pages/who-we-serve/plant-manager/en/plant-manager-header-image.png')]"
+			className="relative w-full md:bg-cover md:bg-right md:bg-no-repeat 2xl:bg-top-right 3xl:min-h-[675px] 4xl:min-h-[695px] md:bg-[url('https://tractian-webpage.s3.us-east-1.amazonaws.com/website/pages/who-we-serve/plant-manager/en/plant-manager-header-image.png')]"
 		>
 			{/* Left content panel */}
 			<div className="relative z-10 flex w-full max-w-full justify-end bg-blue-950 bg-opacity-100 px-4 pb-12 pt-14 md:max-w-[50%] md:items-center md:bg-opacity-80 lg:px-12 lg:py-16 xl:py-20 xl:pl-16 xl:pr-24 3xl:min-h-[675px] 4xl:min-h-[695px]">

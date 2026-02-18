@@ -4,31 +4,12 @@ import { useTranslations } from "next-intl";
 import { TractianLogo } from "@/components/ui/TractianLogo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useState } from "react";
-
-/** Chevron SVG used in nav dropdowns */
-function ChevronDown({ className = "h-3 w-3" }: { className?: string }) {
-	return (
-		<svg
-			viewBox="0 0 22 13"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			className={`pointer-events-none ${className} transition-transform`}
-		>
-			<path
-				fillRule="evenodd"
-				clipRule="evenodd"
-				d="M21.5657 1.56569L11.0001 12.1314L0.43457 1.56569L1.56595 0.434329L11.0001 9.86863L20.4344 0.434326L21.5657 1.56569Z"
-				fill="currentColor"
-			/>
-		</svg>
-	);
-}
-
+import { ChevronDown } from "@/components/ui/ChevronDown";
+import Link from "next/link";
 interface HeaderProps {
   onGetDemo: () => void;
 }
 
-/** Sticky navigation bar — matches Tractian's exact styling */
 export function Header({ onGetDemo }: HeaderProps) {
 	const t = useTranslations("nav");
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,9 +30,9 @@ export function Header({ onGetDemo }: HeaderProps) {
 					{/* Left: logo + nav items */}
 					<section className="flex items-center gap-x-4">
 						<figure className="fill-blue-600">
-							<a aria-label="Tractian Logo" href="/">
+							<Link aria-label="Tractian Logo" href="/">
 								<TractianLogo className="w-32 fill-blue-600" />
-							</a>
+							</Link>
 						</figure>
 
 						<div className="flex h-[72px] items-center">
@@ -95,9 +76,9 @@ export function Header({ onGetDemo }: HeaderProps) {
 				<div className="w-full overflow-hidden lg:hidden">
 					<div className="flex w-full items-center justify-between">
 						<figure className="fill-blue-600">
-							<a aria-label="Tractian Logo" href="/">
+							<Link aria-label="Tractian Logo" href="/">
 								<TractianLogo className="w-32 fill-blue-600" />
-							</a>
+							</Link>
 						</figure>
 						<figure className="flex items-center justify-center">
 							<button
@@ -155,14 +136,14 @@ export function Header({ onGetDemo }: HeaderProps) {
 							{/* Login + Get Demo */}
 							<div className="flex items-center justify-between gap-4 px-4 py-6">
 								<div className="w-full">
-									<a
-										className="block w-full rounded-sm transition ease-in-out duration-150 text-center text-blue-600 outline outline-1 outline-blue-600 hover:outline-2 text-body-md px-4 py-2"
+									<Link
+										className="block w-full rounded-sm transition ease-in-out duration-150 text-center text-blue-600 outline-1 outline-blue-600 hover:outline-2 text-body-md px-4 py-2"
 										href="https://app.tractian.com"
 										target="_blank"
 										rel="noopener noreferrer"
 									>
 										{t("login")}
-									</a>
+									</Link>
 								</div>
 								<button
 									className="w-full max-w-full rounded-sm transition ease-in-out duration-150 text-center bg-blue-600 text-white font-medium text-body-md px-4 py-2 hover:bg-blue-900 active:bg-blue-950"
