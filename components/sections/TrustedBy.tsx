@@ -121,7 +121,7 @@ export function TrustedBy() {
 	const t = useTranslations("trustedBy");
 
 	return (
-		<section className="w-full px-0 pt-4 lg:px-4 lg:pb-16">
+		<section className="w-full overflow-hidden px-0 pt-4 lg:px-4 lg:pb-16">
 			<div className="mx-auto flex w-full max-w-full flex-col items-center gap-8 lg:gap-12">
 				{/* Section subtitle */}
 				<h2 className="mx-auto max-w-2xl px-4 text-center text-slate-500 text-body-md lg:px-0">
@@ -129,7 +129,7 @@ export function TrustedBy() {
 				</h2>
 
 				{/* Mobile: infinite scroll carousel */}
-				<div className="lg:hidden">
+				<div className="w-full overflow-hidden lg:hidden">
 					<div className="flex w-full flex-col">
 						<section className="overflow-hidden">
 							<section className="relative h-20 lg:h-28">

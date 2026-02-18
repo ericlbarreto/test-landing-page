@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 
 function CheckmarkIcon() {
@@ -22,6 +22,19 @@ const tabImages = [
 export function WhyChoose() {
 	const t = useTranslations("whyChoose");
 	const [activeIndex, setActiveIndex] = useState(0);
+
+	const TOTAL_TABS = 4;
+	const AUTO_ROTATE_MS = 5000;
+
+	const goToNext = useCallback(() => {
+		setActiveIndex((prev) => (prev + 1) % TOTAL_TABS);
+	}, []);
+
+	useEffect(() => {
+		const timer = setInterval(goToNext, AUTO_ROTATE_MS);
+
+		return () => clearInterval(timer);
+	}, [activeIndex, goToNext]);
 
 	const items = [0, 1, 2, 3].map((i) => ({
 		title: t(`items.${i}.title`),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useTranslations } from "next-intl";
 
 import { QuoteIcon } from "@/components/ui/QuoteIcon";
@@ -68,6 +68,31 @@ export function Testimonials() {
 	const t = useTranslations("testimonials");
 	const [activeDot, setActiveDot] = useState(0);
 
+	/* Touch/swipe tracking */
+	const touchStartX = useRef(0);
+	const touchEndX = useRef(0);
+	const SWIPE_THRESHOLD = 50;
+
+	const handleTouchStart = (e: React.TouchEvent) => {
+		touchStartX.current = e.touches[0].clientX;
+	};
+
+	const handleTouchMove = (e: React.TouchEvent) => {
+		touchEndX.current = e.touches[0].clientX;
+	};
+
+	const handleTouchEnd = () => {
+		const diff = touchStartX.current - touchEndX.current;
+
+		if (Math.abs(diff) < SWIPE_THRESHOLD) return;
+
+		if (diff > 0 && activeDot < 3) {
+			setActiveDot((prev) => prev + 1);
+		} else if (diff < 0 && activeDot > 0) {
+			setActiveDot((prev) => prev - 1);
+		}
+	};
+
 	const items = [0, 1, 2, 3].map((i) => ({
 		quote: t(`items.${i}.quote`),
 		name: t(`items.${i}.name`),
@@ -96,12 +121,17 @@ export function Testimonials() {
 				<div className="flex w-full sm:hidden">
 					<div className="relative flex w-full">
 						<section className="relative mx-auto w-full max-w-full">
-							<div className="relative z-20 max-w-full select-none overflow-hidden">
+							<div
+								className="relative z-20 max-w-full overflow-hidden"
+								onTouchStart={handleTouchStart}
+								onTouchMove={handleTouchMove}
+								onTouchEnd={handleTouchEnd}
+							>
 								{/* Slides wrapper */}
 								<div
-									className="flex transition-transform duration-300 ease-in-out"
+									className="flex touch-pan-y transition-transform duration-300 ease-in-out"
 									style={{
-										transform: `translateX(calc(-${activeDot * 100}% + 16px))`,
+										transform: `translateX(calc(-${activeDot} * (100% - 48px) + 16px))`,
 									}}
 								>
 									{items.map((item, index) => (

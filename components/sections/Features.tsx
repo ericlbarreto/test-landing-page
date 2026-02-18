@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 
 const TAB_IMAGES = [
@@ -13,6 +13,19 @@ const TAB_IMAGES = [
 export function Features() {
 	const t = useTranslations("features");
 	const [activeTab, setActiveTab] = useState(1);
+
+	const TOTAL_TABS = 4;
+	const AUTO_ROTATE_MS = 5000;
+
+	const goToNext = useCallback(() => {
+		setActiveTab((prev) => (prev + 1) % TOTAL_TABS);
+	}, []);
+
+	useEffect(() => {
+		const timer = setInterval(goToNext, AUTO_ROTATE_MS);
+
+		return () => clearInterval(timer);
+	}, [activeTab, goToNext]);
 
 	const tabs = [0, 1, 2, 3].map((i) => ({
 		label: t(`tabs.${i}.label`),
