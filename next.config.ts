@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.tractian.com",
       },
+      {
+        protocol: "https",
+        hostname: "tractian-webpage.s3.us-east-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "imgix.tractian.com",
+      },
     ],
   },
 };

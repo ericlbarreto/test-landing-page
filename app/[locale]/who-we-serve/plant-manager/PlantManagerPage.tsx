@@ -31,11 +31,11 @@ export function PlantManagerPage() {
       <main>
         <Hero onGetDemo={openDemo} />
         <WhyChoose />
+        <Features />
         <ValueProps />
         <Testimonials />
         <TrustedBy />
         <HowItWorks />
-        <Features />
         <CtaBanner onGetDemo={openDemo} />
         <Faq />
       </main>

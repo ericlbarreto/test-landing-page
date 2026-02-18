@@ -2,167 +2,111 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
 
-/** "Why Plant Managers Choose Tractian" section with accordion items */
+/** Checkmark SVG for accordion checkbox */
+function CheckmarkIcon() {
+  return (
+    <svg fill="none" height="14" viewBox="0 0 25 25" width="18" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.02344 11.5L10.0234 19.5M2.02344 11.5L10.0234 19.5" stroke="#fff" strokeWidth="1.8" />
+      <path d="M9.02344 19.5L23.0234 5.5" stroke="#fff" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
+/** Image URLs for each accordion tab */
+const tabImages = [
+  "https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/prove-the-roi.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
+  "https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/get-ahead-of-downtime.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
+  "https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/run-a-leaner-team.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
+  "https://imgix.tractian.com/website/pages/who-we-serve/plant-manager/en/keep-audits-simple.png?auto=format%2Ccompress&cs=origin&fit=max&q=75&w=1080",
+];
+
+/** "Why Plant Managers Choose Tractian" — accordion with image */
 export function WhyChoose() {
   const t = useTranslations("whyChoose");
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Get items from translations
   const items = [0, 1, 2, 3].map((i) => ({
     title: t(`items.${i}.title`),
     description: t(`items.${i}.description`),
   }));
 
   return (
-    <Section>
-      <Container>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: text + accordion */}
-          <div>
-            <p className="mb-3 text-xs md:text-sm font-semibold tracking-[0.15em] text-primary uppercase">
-              {t("eyebrow")}
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-8 leading-tight">
-              {t("title")}
-            </h2>
+    <section className="w-full bg-slate-100 px-4 py-12 lg:py-16" style={{ overflowAnchor: "none" }}>
+      <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 lg:max-w-6xl lg:gap-16">
+        {/* Header */}
+        <article className="flex w-full flex-col gap-4">
+          <p className="uppercase text-blue-600 text-body-md">
+            {t("eyebrow")}
+          </p>
+          <h2 className="font-bold text-title-lg">
+            {t("title")}
+          </h2>
+        </article>
 
-            <div className="space-y-1">
-              {items.map((item, index) => {
-                const isActive = activeIndex === index;
-                return (
-                  <div key={index} className="border-l-4 border-transparent">
-                    <button
-                      onClick={() => setActiveIndex(isActive ? -1 : index)}
-                      className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left transition-all ${
+        {/* Content: accordion + image */}
+        <div className="flex w-full flex-col items-start gap-8 lg:min-h-[360px] lg:flex-row lg:justify-between">
+          {/* Left: accordion tabs */}
+          <div className="flex h-[316px] w-full flex-col gap-4 border-l-2 border-slate-300 xs:h-auto lg:gap-6">
+            {items.map((item, index) => {
+              const isActive = activeIndex === index;
+              return (
+                <button
+                  key={index}
+                  className={`group h-full w-full bg-transparent px-4 transition-all duration-300 -ml-[2px] border-l-2 ${
+                    isActive ? "border-blue-500" : "border-slate-300"
+                  }`}
+                  aria-label="Select Tab"
+                  onClick={() => setActiveIndex(index)}
+                >
+                  {/* Tab header: checkbox + title */}
+                  <div className={`${isActive ? "mb-2" : "mb-0"} flex w-full items-center gap-3 transition-all duration-500 lg:justify-between`}>
+                    <figure
+                      className={`flex h-6 w-6 items-center justify-center transition-all duration-300 ease-in-out ${
+                        isActive ? "bg-blue-600" : "bg-slate-400"
+                      }`}
+                    >
+                      <CheckmarkIcon />
+                    </figure>
+                    <h3
+                      className={`w-full flex-1 text-left font-medium transition-all duration-500 text-body-lg lg:font-semibold lg:text-title-xs ${
                         isActive
-                          ? "border-l-4 border-primary bg-white"
-                          : "hover:bg-slate-50"
+                          ? "text-slate-700 group-hover:brightness-110"
+                          : "text-slate-400"
                       }`}
-                      aria-expanded={isActive}
                     >
-                      {/* Checkbox icon */}
-                      <div
-                        className={`flex h-5 w-5 flex-shrink-0 items-center justify-center rounded ${
-                          isActive
-                            ? "bg-primary text-white"
-                            : "border-2 border-slate-300"
-                        }`}
-                      >
-                        {isActive && (
-                          <svg
-                            className="h-3 w-3"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={3}
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        )}
-                      </div>
-                      <span
-                        className={`text-sm md:text-base font-semibold ${
-                          isActive ? "text-slate-900" : "text-slate-400"
-                        }`}
-                      >
-                        {item.title}
-                      </span>
-                    </button>
+                      {item.title}
+                    </h3>
+                  </div>
 
-                    {/* Expandable description */}
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ${
-                        isActive ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
-                      }`}
-                    >
-                      <p className="px-4 pb-4 pl-12 text-sm text-slate-500 leading-relaxed">
-                        {item.description}
-                      </p>
+                  {/* Expandable description */}
+                  <div
+                    className="overflow-hidden transition-all duration-500 ease-in-out"
+                    style={{ maxHeight: isActive ? "120px" : "0px" }}
+                  >
+                    <div className="flex flex-col gap-1 text-left text-slate-500 text-body-md">
+                      <p>{item.description}</p>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Right: image placeholder */}
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://tractian.com/images/who-we-serve/plant-manager/plant-manager-why-choose.webp"
-                alt="Industrial equipment with Tractian monitoring"
-                className="w-full h-auto rounded-2xl"
-                loading="lazy"
-              />
-            </div>
-
-            {/* Floating status cards */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              <div className="rounded-xl bg-white px-3 py-2 shadow-lg text-center">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <div className="h-4 w-4 rounded-full bg-green-100 flex items-center justify-center">
-                    <svg className="h-2.5 w-2.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-xs font-medium text-slate-700">Lubrication</span>
-                </div>
-                <div className="flex gap-0.5 mb-0.5">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="h-1 w-3 rounded-full bg-green-400" />
-                  ))}
-                  <div className="h-1 w-3 rounded-full bg-slate-200" />
-                </div>
-                <span className="text-[10px] text-green-500 font-medium">Satisfactory</span>
-              </div>
-
-              <div className="rounded-xl bg-white px-3 py-2 shadow-lg text-center">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <div className="h-4 w-4 rounded-full bg-amber-100 flex items-center justify-center">
-                    <span className="text-amber-500 text-[8px]">⚠</span>
-                  </div>
-                  <span className="text-xs font-medium text-slate-700">Vibration</span>
-                </div>
-                <div className="flex gap-0.5 mb-0.5">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="h-1 w-3 rounded-full bg-amber-400" />
-                  ))}
-                  {[1, 2].map((i) => (
-                    <div key={i} className="h-1 w-3 rounded-full bg-slate-200" />
-                  ))}
-                </div>
-                <span className="text-[10px] text-amber-500 font-medium">Unsatisfactory</span>
-              </div>
-
-              <div className="rounded-xl bg-white px-3 py-2 shadow-lg text-center">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <div className="h-4 w-4 rounded-full bg-amber-100 flex items-center justify-center">
-                    <span className="text-amber-500 text-[8px]">⚠</span>
-                  </div>
-                  <span className="text-xs font-medium text-slate-700">Cavitation</span>
-                </div>
-                <div className="flex gap-0.5 mb-0.5">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="h-1 w-3 rounded-full bg-amber-400" />
-                  ))}
-                  {[1, 2].map((i) => (
-                    <div key={i} className="h-1 w-3 rounded-full bg-slate-200" />
-                  ))}
-                </div>
-                <span className="text-[10px] text-amber-500 font-medium">Unsatisfactory</span>
-              </div>
-            </div>
-          </div>
+          {/* Right: image */}
+          <figure className="relative flex h-full w-full justify-center rounded-sm lg:h-[320px]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt={items[activeIndex].title}
+              loading="lazy"
+              width={1071}
+              height={749}
+              className="h-full w-full rounded-sm object-contain transition-all duration-300 ease-in-out md:object-cover lg:object-contain"
+              src={tabImages[activeIndex]}
+            />
+          </figure>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }
