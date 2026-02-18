@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tractian Landing Page — Plant Manager
 
-## Getting Started
+Reprodução pixel-perfect da página [tractian.com/en/who-we-serve/plant-manager](https://tractian.com/en/who-we-serve/plant-manager).
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS 4**
+- **next-intl** (i18n: EN, PT, ES)
+- **React Hook Form + Zod** (formulário)
+
+## Como rodar local
 
 ```bash
+# 1. Instalar dependências
+npm install
+
+# 2. Rodar servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 3. Abrir no navegador
+# http://localhost:3000/en/who-we-serve/plant-manager
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Trocar idioma
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Via URL: `/en/...`, `/pt/...`, `/es/...`
+- Via Language Switcher no header (ícone de globo)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy na Vercel
 
-## Learn More
+```bash
+# Opção 1: via Vercel CLI
+npm i -g vercel
+vercel
 
-To learn more about Next.js, take a look at the following resources:
+# Opção 2: conectar repo no vercel.com
+# Push para GitHub → import no Vercel → deploy automático
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estrutura de pastas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+├── app/
+│   └── [locale]/
+│       ├── layout.tsx              # Layout com i18n provider
+│       ├── page.tsx                # Redirect para plant-manager
+│       └── who-we-serve/
+│           └── plant-manager/
+│               ├── page.tsx        # Server page
+│               └── PlantManagerPage.tsx  # Client page
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   └── LanguageSwitcher.tsx
+│   ├── sections/
+│   │   ├── Hero.tsx
+│   │   ├── WhyChoose.tsx
+│   │   ├── ValueProps.tsx
+│   │   ├── Testimonials.tsx
+│   │   ├── TrustedBy.tsx
+│   │   ├── HowItWorks.tsx
+│   │   ├── Features.tsx
+│   │   ├── CtaBanner.tsx
+│   │   ├── Faq.tsx
+│   │   └── DemoForm.tsx
+│   └── ui/
+│       ├── Button.tsx
+│       ├── Container.tsx
+│       ├── Modal.tsx
+│       ├── Section.tsx
+│       └── TractianLogo.tsx
+├── i18n/
+│   ├── navigation.ts
+│   ├── request.ts
+│   └── routing.ts
+├── messages/
+│   ├── en.json
+│   ├── pt.json
+│   └── es.json
+├── types/
+│   └── index.ts
+└── middleware.ts
+```
 
-## Deploy on Vercel
+## Checklist
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [x] Next.js 16 + TypeScript + Tailwind CSS 4
+- [x] i18n com next-intl (EN, PT, ES)
+- [x] Language Switcher
+- [x] Rota: `/[locale]/who-we-serve/plant-manager`
+- [x] Header/Nav (responsivo, mobile menu)
+- [x] Hero section (headline, CTA, testimonial overlay)
+- [x] Why Choose Tractian (accordion com checkboxes)
+- [x] Value Propositions (3 cards com ícones)
+- [x] Testimonials (scroll horizontal mobile, grid desktop)
+- [x] Trusted By logos
+- [x] How It Works (4 steps numerados)
+- [x] Features tabs (4 tabs com conteúdo)
+- [x] CTA Banner (full-width, dark background)
+- [x] FAQ Accordion (17 itens, acessível)
+- [x] Demo Form Modal (React Hook Form + Zod)
+  - [x] Validação de campos
+  - [x] Estados: idle, loading, success, error
+  - [x] Submission simulada
+  - [x] Labels e aria attributes
+- [x] Footer com colunas de navegação
+- [x] Responsivo (mobile-first: 390px / 768px / 1280px)
+- [x] Acessibilidade (aria-expanded, aria-modal, focus trap, roles)
+- [x] Tipagem forte (TypeScript strict)
+- [x] Componentização limpa e reutilizável
