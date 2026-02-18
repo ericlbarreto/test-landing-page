@@ -57,13 +57,13 @@ export function WhyChoose() {
 				{/* Content: accordion + image */}
 				<div className="flex w-full flex-col items-start gap-8 lg:min-h-[360px] lg:flex-row lg:justify-between">
 					{/* Left: accordion tabs */}
-					<div className="flex h-[316px] w-full flex-col gap-4 border-l-2 border-slate-300 xs:h-auto lg:gap-6">
+					<div className="flex w-full flex-col gap-4 border-l-2 border-slate-300 lg:gap-6">
 						{items.map((item, index) => {
 							const isActive = activeIndex === index;
 							return (
 								<button
 									key={index}
-									className={`group h-full w-full bg-transparent px-4 transition-all duration-300 -ml-[2px] border-l-2 ${
+									className={`group w-full bg-transparent px-4 transition-all duration-300 -ml-[2px] border-l-2 ${
 										isActive ? "border-blue-500" : "border-slate-300"
 									}`}
 									aria-label="Select Tab"
@@ -72,7 +72,7 @@ export function WhyChoose() {
 									{/* Tab header: checkbox + title */}
 									<div className={`${isActive ? "mb-2" : "mb-0"} flex w-full items-center gap-3 transition-all duration-500 lg:justify-between`}>
 										<figure
-											className={`flex h-6 w-6 items-center justify-center transition-all duration-300 ease-in-out ${
+											className={`flex h-6 w-6 shrink-0 items-center justify-center transition-all duration-300 ease-in-out ${
 												isActive ? "bg-blue-600" : "bg-slate-400"
 											}`}
 										>
@@ -92,7 +92,7 @@ export function WhyChoose() {
 									{/* Expandable description */}
 									<div
 										className="overflow-hidden transition-all duration-500 ease-in-out"
-										style={{ maxHeight: isActive ? "120px" : "0px" }}
+										style={{ maxHeight: isActive ? "200px" : "0px" }}
 									>
 										<div className="flex flex-col gap-1 text-left text-slate-500 text-body-md">
 											<p>{item.description}</p>
