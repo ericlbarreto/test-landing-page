@@ -19,31 +19,31 @@ import { DemoForm } from "@/components/sections/DemoForm";
  * and renders all sections in the correct order.
  */
 export function PlantManagerPage() {
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
+	const [isDemoOpen, setIsDemoOpen] = useState(false);
 
-  const openDemo = () => setIsDemoOpen(true);
-  const closeDemo = () => setIsDemoOpen(false);
+	const openDemo = () => setIsDemoOpen(true);
+	const closeDemo = () => setIsDemoOpen(false);
 
-  return (
-    <>
-      <Header onGetDemo={openDemo} />
+	return (
+		<>
+			<Header onGetDemo={openDemo} />
 
-      <main>
-        <Hero onGetDemo={openDemo} />
-        <WhyChoose />
-        <Features />
-        <ValueProps />
-        <Testimonials />
-        <TrustedBy />
-        <HowItWorks />
-        <CtaBanner onGetDemo={openDemo} />
-        <Faq />
-      </main>
+			<main>
+				<Hero onGetDemo={openDemo} />
+				<WhyChoose />
+				<Features />
+				<ValueProps />
+				<Testimonials />
+				<TrustedBy />
+				<HowItWorks />
+				<CtaBanner onGetDemo={openDemo} />
+				<Faq />
+			</main>
 
-      <Footer />
+			<Footer />
 
-      {/* Demo request modal */}
-      <DemoForm isOpen={isDemoOpen} onClose={closeDemo} />
-    </>
-  );
+			{/* Demo request modal */}
+			<DemoForm isOpen={isDemoOpen} onClose={closeDemo} />
+		</>
+	);
 }

@@ -2,12 +2,12 @@ import { setRequestLocale } from "next-intl/server";
 import { PlantManagerPage } from "./PlantManagerPage";
 
 export default async function Page({
-  params,
+	params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+	const { locale } = await params;
+	setRequestLocale(locale);
 
-  return <PlantManagerPage />;
+	return <PlantManagerPage />;
 }

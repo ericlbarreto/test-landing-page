@@ -4,124 +4,99 @@ import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { useState, useRef, useEffect } from "react";
+import { GlobeIcon } from "@/components/ui/GlobeIcon";
 
 const localeLabels: Record<Locale, string> = {
-  en: "English (United States)",
-  pt: "Português (Brasil)",
-  es: "Español",
+	en: "English (United States)",
+	pt: "Português (Brasil)",
+	es: "Español",
 };
-
-/** Globe icon matching Tractian's design */
-function GlobeIcon() {
-  return (
-    <svg
-      fill="none"
-      height="20"
-      viewBox="0 0 20 20"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
-      className="text-slate-500 transition-all duration-150 group-hover:text-blue-600"
-    >
-      <g clipPath="url(#globe_clip)">
-        <path
-          d="M10.0002 0.625C4.8335 0.625 0.666834 4.79167 0.666834 9.95833C0.666834 15.125 4.8335 19.2917 10.0002 19.2917C10.5835 19.2917 11.1668 19.2083 11.6668 19.125L11.4168 17.875C10.9168 17.9583 10.4168 18.0417 9.91683 18.0417C9.3335 18.0417 8.50017 17.0417 7.91683 14.7917C9.0835 14.5417 10.2502 14.4583 11.3335 14.625L11.5835 13.375C10.2502 13.125 8.91683 13.2083 7.66683 13.5417C7.5835 12.625 7.50017 11.625 7.41683 10.625H19.3335V9.95833C19.3335 4.79167 15.1668 0.625 10.0002 0.625ZM10.0002 5.375C9.3335 5.375 8.66683 5.29167 8.00017 5.125C8.50017 3.04167 9.3335 1.875 10.0002 1.875C10.6668 1.875 11.5002 3.04167 12.0002 5.125C11.3335 5.29167 10.6668 5.375 10.0002 5.375ZM12.2502 6.29167C12.4168 7.20833 12.5002 8.20833 12.5002 9.29167H7.41683C7.41683 8.20833 7.5835 7.20833 7.66683 6.29167C8.50017 6.54167 9.25017 6.625 10.0002 6.625C10.7502 6.625 11.5002 6.54167 12.2502 6.29167ZM6.8335 4.70833C6.16683 4.45833 5.50017 4.04167 4.91683 3.625C5.8335 2.95833 6.75017 2.45833 7.8335 2.125C7.41683 2.79167 7.0835 3.70833 6.8335 4.70833ZM12.1668 2.125C13.2502 2.45833 14.2502 2.95833 15.0835 3.625C14.5002 4.04167 13.9168 4.45833 13.2502 4.70833C12.9168 3.70833 12.5835 2.79167 12.1668 2.125ZM4.00017 4.45833C4.75017 5.125 5.5835 5.625 6.50017 5.95833C6.3335 7.04167 6.16683 8.20833 6.16683 9.375H1.91683C2.0835 7.45833 2.8335 5.79167 4.00017 4.45833ZM5.00017 16.375C5.5835 15.9583 6.16683 15.5417 6.8335 15.2917C7.0835 16.2917 7.41683 17.125 7.8335 17.7917C6.75017 17.4583 5.8335 17.0417 5.00017 16.375ZM6.5835 14.0417C5.66683 14.375 4.8335 14.875 4.0835 15.5417C2.8335 14.2083 2.0835 12.5417 1.91683 10.625H6.25017C6.25017 11.7083 6.3335 12.875 6.5835 14.0417ZM13.8335 9.29167C13.8335 8.125 13.6668 6.95833 13.5002 5.875C14.4168 5.54167 15.2502 5.04167 16.0002 4.375C17.1668 5.70833 18.0002 7.375 18.1668 9.29167H13.8335Z"
-          fill="currentColor"
-        />
-      </g>
-      <defs>
-        <clipPath id="globe_clip">
-          <rect fill="white" height="20" width="20" />
-        </clipPath>
-      </defs>
-    </svg>
-  );
-}
 
 /** Chevron for dropdown */
 function ChevronDown({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 22 13"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={`pointer-events-none text-slate-500 transition-transform hover:text-blue-600 group-hover:text-blue-600 ${className}`}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M21.5657 1.56569L11.0001 12.1314L0.43457 1.56569L1.56595 0.434329L11.0001 9.86863L20.4344 0.434326L21.5657 1.56569Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
+	return (
+		<svg
+			viewBox="0 0 22 13"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			className={`pointer-events-none text-slate-500 transition-transform hover:text-blue-600 group-hover:text-blue-600 ${className}`}
+		>
+			<path
+				fillRule="evenodd"
+				clipRule="evenodd"
+				d="M21.5657 1.56569L11.0001 12.1314L0.43457 1.56569L1.56595 0.434329L11.0001 9.86863L20.4344 0.434326L21.5657 1.56569Z"
+				fill="currentColor"
+			/>
+		</svg>
+	);
 }
 
 /** Language switcher dropdown — matches Tractian's navbar style */
 export function LanguageSwitcher() {
-  const locale = useLocale() as Locale;
-  const router = useRouter();
-  const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+	const locale = useLocale() as Locale;
+	const router = useRouter();
+	const pathname = usePathname();
+	const [isOpen, setIsOpen] = useState(false);
+	const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+	useEffect(() => {
+		function handleClickOutside(e: MouseEvent) {
+			if (ref.current && !ref.current.contains(e.target as Node)) {
+				setIsOpen(false);
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, []);
 
-  function switchLocale(newLocale: Locale) {
-    router.replace(pathname, { locale: newLocale });
-    setIsOpen(false);
-  }
+	function switchLocale(newLocale: Locale) {
+		router.replace(pathname, { locale: newLocale });
+		setIsOpen(false);
+	}
 
-  return (
-    <div ref={ref} className="relative inline-flex w-full flex-col py-4 lg:w-auto lg:max-w-none lg:flex-row lg:px-0 lg:py-2">
-      <button
-        aria-label="Switch Language Button"
-        className="group flex w-full items-center justify-between gap-x-2 rounded-sm px-4 py-1 text-body-sm focus:outline-none lg:bg-transparent lg:px-2 xl:pl-3 xl:text-body-md"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-        aria-haspopup="listbox"
-      >
-        <div className="flex items-center gap-x-4">
-          <figure>
-            <GlobeIcon />
-          </figure>
-          <p className="font-medium text-slate-500 transition-all duration-150 text-body-sm group-hover:text-blue-600 lg:hidden">
-            {localeLabels[locale]}
-          </p>
-        </div>
-        <ChevronDown className={`h-4 w-4 lg:h-3 lg:w-3 ${isOpen ? "rotate-180" : ""}`} />
-      </button>
+	return (
+		<div ref={ref} className="relative inline-flex w-full flex-col py-4 lg:w-auto lg:max-w-none lg:flex-row lg:px-0 lg:py-2">
+			<button
+				aria-label="Switch Language Button"
+				className="group flex w-full items-center justify-between gap-x-2 rounded-sm px-4 py-1 text-body-sm focus:outline-none lg:bg-transparent lg:px-2 xl:pl-3 xl:text-body-md"
+				onClick={() => setIsOpen(!isOpen)}
+				aria-expanded={isOpen}
+				aria-haspopup="listbox"
+			>
+				<div className="flex items-center gap-x-4">
+					<figure>
+						<GlobeIcon />
+					</figure>
+					<p className="font-medium text-slate-500 transition-all duration-150 text-body-sm group-hover:text-blue-600 lg:hidden">
+						{localeLabels[locale]}
+					</p>
+				</div>
+				<ChevronDown className={`h-4 w-4 lg:h-3 lg:w-3 ${isOpen ? "rotate-180" : ""}`} />
+			</button>
 
-      {isOpen && (
-        <ul
-          role="listbox"
-          className="absolute left-0 top-full z-50 mt-1 w-56 rounded-lg border border-slate-200 bg-white py-1 shadow-lg lg:right-0 lg:left-auto"
-        >
-          {routing.locales.map((loc) => (
-            <li key={loc}>
-              <button
-                role="option"
-                aria-selected={loc === locale}
-                onClick={() => switchLocale(loc)}
-                className={`w-full px-4 py-2 text-left text-body-sm transition-colors ${
-                  loc === locale
-                    ? "bg-blue-50 text-blue-600 font-medium"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-blue-600"
-                }`}
-              >
-                {localeLabels[loc]}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+			{isOpen && (
+				<ul
+					role="listbox"
+					className="absolute left-0 top-full z-50 mt-1 w-56 rounded-lg border border-slate-200 bg-white py-1 shadow-lg lg:right-0 lg:left-auto"
+				>
+					{routing.locales.map((loc) => (
+						<li key={loc}>
+							<button
+								role="option"
+								aria-selected={loc === locale}
+								onClick={() => switchLocale(loc)}
+								className={`w-full px-4 py-2 text-left text-body-sm transition-colors ${
+									loc === locale
+										? "bg-blue-50 text-blue-600 font-medium"
+										: "text-slate-500 hover:bg-slate-50 hover:text-blue-600"
+								}`}
+							>
+								{localeLabels[loc]}
+							</button>
+						</li>
+					))}
+				</ul>
+			)}
+		</div>
+	);
 }
